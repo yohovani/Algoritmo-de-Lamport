@@ -213,9 +213,7 @@ public class Lamport extends Thread{
 	public String formatoLista1(){
 		String aux="";
 		for(int i=0;i<this.tiempos1.size();i++){
-			if(envio && this.indice-4 == i || this.indice==i){
-				aux+="-> "+tiempos1.get(i)+"\n";
-			}else
+			
 			aux+=tiempos1.get(i)+"\n";
 		}
 		
@@ -225,9 +223,7 @@ public class Lamport extends Thread{
 	public String formatoLista2(){
 		String aux="";
 		for(int i=0;i<this.tiempos2.size();i++){
-			if(envio && this.indice-3 == i || this.indice-1 == i){
-				aux+="-> "+tiempos2.get(i)+"\n";
-			}else
+			
 			aux+=tiempos1.get(i)+"\n";
 		}
 		return aux;
@@ -236,10 +232,7 @@ public class Lamport extends Thread{
 	public String formatoLista3(){
 		String aux="";
 		for(int i=0;i<this.tiempos3.size();i++){
-			if(envio && this.indice-2 == i){
-				aux+="-> "+tiempos3.get(i)+"\n";
-			}else
-
+			
 			aux+=tiempos3.get(i)+"\n";
 		}
 		return aux;
