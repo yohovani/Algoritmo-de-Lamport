@@ -297,6 +297,11 @@ public class GUI extends javax.swing.JFrame {
 			l3.setActual(1);
 			l3.setBandera(true);
 			
+			l1.setEnvio(c);
+			l2.setEnvio(c);
+			l3.setEnvio(c);
+			
+			
 			Runnable r = new Runnable() {
 				@Override
 				public void run() {
@@ -318,6 +323,7 @@ public class GUI extends javax.swing.JFrame {
 			l3.start();
 			
 			tread.start();
+			c=true;
 		}
 		
 		
@@ -344,9 +350,9 @@ public class GUI extends javax.swing.JFrame {
 				while(true){
 					try {
 						for(int i=0;i<a1.size();i++){
-							a1.set(i, a1.get(i)+1);
-							a2.set(i, a2.get(i)+1);
-							a3.set(i, a3.get(i)+1);
+							a1.set(i, a1.get(i)+l1.getIncremento());
+							a2.set(i, a2.get(i)+l2.getIncremento());
+							a3.set(i, a3.get(i)+l3.getIncremento());
 						}
 						l1.setTiempos1(a1);
 						l2.setTiempos2(a2);
@@ -431,7 +437,7 @@ public class GUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 	Lamport l1,l2,l3;
 	Thread t;
-	boolean b = true;
+	boolean b = true,c=false;
 		boolean fg = true;
 		int x = 0;
 		

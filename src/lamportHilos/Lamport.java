@@ -6,9 +6,6 @@
 package lamportHilos;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Yohovani
@@ -18,7 +15,7 @@ public class Lamport extends Thread{
 	private ArrayList<Integer> tiempos2;
 	private ArrayList<Integer> tiempos3;
 	private int incremento;
-	private boolean bandera,fin;
+	private boolean bandera,fin,envio;
 	private int indice,actual;
 
 	public void setActual(int actual) {
@@ -159,8 +156,6 @@ public class Lamport extends Thread{
 				indice++;
 			}
 		}
-		//notifyAll();
-		System.out.println("Actual = "+this.actual);
 	}
 
 	public void ajustar(int x, int indice,int valor) {
@@ -218,15 +213,22 @@ public class Lamport extends Thread{
 	public String formatoLista1(){
 		String aux="";
 		for(int i=0;i<this.tiempos1.size();i++){
+			if(envio && this.indice-4 == i || this.indice==i){
+				aux+="-> "+tiempos1.get(i)+"\n";
+			}else
 			aux+=tiempos1.get(i)+"\n";
 		}
+		
 		return aux;
 	}
 	
 	public String formatoLista2(){
 		String aux="";
 		for(int i=0;i<this.tiempos2.size();i++){
-			aux+=tiempos2.get(i)+"\n";
+			if(envio && this.indice-3 == i || this.indice-1 == i){
+				aux+="-> "+tiempos2.get(i)+"\n";
+			}else
+			aux+=tiempos1.get(i)+"\n";
 		}
 		return aux;
 	}
@@ -234,8 +236,22 @@ public class Lamport extends Thread{
 	public String formatoLista3(){
 		String aux="";
 		for(int i=0;i<this.tiempos3.size();i++){
+			if(envio && this.indice-2 == i){
+				aux+="-> "+tiempos3.get(i)+"\n";
+			}else
+
 			aux+=tiempos3.get(i)+"\n";
 		}
 		return aux;
 	}
+
+	public boolean isEnvio() {
+		return envio;
+	}
+
+	public void setEnvio(boolean envio) {
+		this.envio = envio;
+	}
+	
+	
 }

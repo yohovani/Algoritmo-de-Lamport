@@ -6,6 +6,8 @@
 package LamportSinHilos;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,6 +29,9 @@ public class Lamport {
 	}
 
 	public void enviar(){
+		if((indice+5) > this.tiempos1.size()){
+		//	addTiempos();
+		}
 		for(int i=0;i<5;i++){
 			Algoritmo();
 		}
@@ -184,6 +189,15 @@ public class Lamport {
 
 	public void setSR(boolean SR) {
 		this.SR = SR;
+	}
+
+	public void addTiempos() {
+		int x = indice+5;	
+		for(int i=this.tiempos1.size();i<x;i++){
+			this.tiempos1.add(this.tiempos1.get(i-1)+this.incrementos[0]);
+			this.tiempos2.add(this.tiempos2.get(i-1)+this.incrementos[1]);
+			this.tiempos3.add(this.tiempos3.get(i-1)+this.incrementos[2]);
+		}
 	}
 	
 	
